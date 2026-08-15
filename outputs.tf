@@ -56,6 +56,6 @@ output "wafv2_rule_groups_tags_all" {
 }
 output "wafv2_rule_groups_visibility_config" {
   description = "Map of visibility_config values across all wafv2_rule_groups, keyed the same as var.wafv2_rule_groups"
-  value       = { for k, v in aws_wafv2_rule_group.wafv2_rule_groups : k => v.visibility_config if v.visibility_config != null && length(v.visibility_config) > 0 }
+  value       = { for k, v in aws_wafv2_rule_group.wafv2_rule_groups : k => one(v.visibility_config) if v.visibility_config != null && length(v.visibility_config) > 0 }
 }
 
